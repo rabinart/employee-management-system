@@ -10,3 +10,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        hbm2ddl:
+          auto: validate
+        dialect: org.hibernate.dialect.PostgreSQLDialect
