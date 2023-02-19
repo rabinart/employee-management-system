@@ -26,7 +26,7 @@ public class Office implements BaseEntity<Integer>{
     private String address;
 
     @Builder.Default
-    @OneToMany(mappedBy = "office")
+    @OneToMany(mappedBy = "office", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Busyness> busyness = new ArrayList<>();
 }
 

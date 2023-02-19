@@ -23,4 +23,7 @@ public class PersonalInfo implements BaseEntity<Integer> {
     @Enumerated(EnumType.STRING)
     private EmployeeStatus status;
 
+    @Column
+    private String description;
+
 }
