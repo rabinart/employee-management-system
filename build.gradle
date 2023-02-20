@@ -5,6 +5,8 @@ plugins {
 	id "io.freefair.lombok" version "6.6.2"
 }
 
+apply from: 'version.gradle'
+
 group = 'com.rabinart'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
@@ -19,6 +21,7 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.testcontainers:postgresql:${versions.testcont}"
 }
 
 tasks.named('test') {

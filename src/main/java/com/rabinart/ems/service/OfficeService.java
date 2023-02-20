@@ -17,6 +17,6 @@ public class OfficeService {
     @Transactional(readOnly = true)
     public Optional<OfficeReadDto> findById(Integer id){
         return officeRepository.findById(id)
-                .map(e -> new OfficeReadDto(e.getName(), e.getAddress()));
+                .map(office -> new OfficeReadDto(office.getName(), office.getAddress()));
     }
 }

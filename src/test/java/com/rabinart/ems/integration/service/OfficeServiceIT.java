@@ -2,6 +2,7 @@ package com.rabinart.ems.integration.service;
 
 
 import com.rabinart.ems.database.dto.OfficeReadDto;
+import com.rabinart.ems.integration.IntegrationTestBase;
 import com.rabinart.ems.integration.annotation.IT;
 import com.rabinart.ems.service.OfficeService;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-//@ExtendWith({SpringExtension.class})
-//@ContextConfiguration(classes = EmsApplication.class, initializers = ConfigDataApplicationContextInitializer.class)
-//@ActiveProfiles("test")
-//@SpringBootTest
-@IT
 @RequiredArgsConstructor
-public class OfficeServiceIT {
+public class OfficeServiceIT extends IntegrationTestBase {
 
     private static final String OFFICE_NAME ="Nirvana";
     private static final Integer OFFICE_ID = 1;
