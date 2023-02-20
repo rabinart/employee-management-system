@@ -2,6 +2,8 @@ package com.rabinart.ems.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import java.time.LocalDateTime;
 
@@ -11,8 +13,9 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
+@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 @Table(name = "busyness")
-public class Busyness implements BaseEntity<Long>{
+public class Busyness extends AuditingEntity<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
