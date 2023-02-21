@@ -1,5 +1,6 @@
 ext {
     versions = [
+            'mapstruct':'1.5.3.Final',
             'testcont': '1.17.6'
     ]
 }

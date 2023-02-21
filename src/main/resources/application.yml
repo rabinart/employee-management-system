@@ -13,3 +13,7 @@ spring:
         hbm2ddl:
           auto: validate
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
