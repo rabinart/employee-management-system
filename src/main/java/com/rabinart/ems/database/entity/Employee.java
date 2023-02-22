@@ -28,11 +28,11 @@ public class Employee implements BaseEntity<Integer> {
     @Column(nullable = false)
     private Integer balance;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "info_id")
     private PersonalInfo personalInfo;
 
     @Builder.Default
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Busyness> busyness = new ArrayList<>();
 }

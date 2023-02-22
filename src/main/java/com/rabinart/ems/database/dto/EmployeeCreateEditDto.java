@@ -8,5 +8,5 @@ public class EmployeeCreateEditDto {
     String name;
     String email;
     Integer balance;
-    PersonalInfoCreateEditDto personalInfo;
+
 }

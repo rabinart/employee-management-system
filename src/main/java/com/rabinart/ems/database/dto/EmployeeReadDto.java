@@ -8,4 +8,6 @@ public class EmployeeReadDto {
     String name;
     String email;
     Integer balance;
+
+    PersonalInfoReadDto personalInfo;
 }
