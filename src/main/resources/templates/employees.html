@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<main>
+    <h1>Users list</h1>
+    <hr>
+    <article>
+        <div th:each="employee : ${employees}">
+            <a th:href="'/employee/' + ${employee.getId()}" th:text="${employee.getId()}+ '. ' + ${employee.getEmail()}"></a>
+        </div>
+    </article>
+    <hr>
+</main>
+</body>
+</html>

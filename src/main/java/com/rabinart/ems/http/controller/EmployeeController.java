@@ -3,6 +3,7 @@ package com.rabinart.ems.http.controller;
 
 import com.rabinart.ems.database.dto.EmployeeCreateEditDto;
 import com.rabinart.ems.database.dto.PersonalInfoCreateEditDto;
+import com.rabinart.ems.database.entity.EmployeeStatus;
 import com.rabinart.ems.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -31,20 +32,21 @@ public class EmployeeController {
         return employeeService.findById(id)
                 .map(employee -> {
                     model.addAttribute("employee", employee);
-                    return "employees";
+                    model.addAttribute("statuses", EmployeeStatus.values());
+                    return "employee";
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public String create(EmployeeCreateEditDto dto, PersonalInfoCreateEditDto info) {
-        return "redirect:employees/" + employeeService.create(dto, info);
+    @PostMapping()
+//    @ResponseStatus(HttpStatus.CREATED)
+    public String create(EmployeeCreateEditDto dto) {
+        return "redirect:/employee/" + employeeService.create(dto).getId();
     }
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable Integer id, EmployeeCreateEditDto dto) {
         return employeeService.update(id, dto)
-                .map(it -> "redirect:/employees/{id}")
+                .map(it -> "redirect:/employee/{id}")
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
@@ -52,6 +54,6 @@ public class EmployeeController {
     public String delete(@PathVariable Integer id) {
         if (!employeeService.delete(id))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return "redirect:employees";
+        return "redirect:/employee";
     }
 }

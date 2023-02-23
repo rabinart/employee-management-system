@@ -28,7 +28,7 @@ public class Employee implements BaseEntity<Integer> {
     @Column(nullable = false)
     private Integer balance;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "info_id")
     private PersonalInfo personalInfo;
 

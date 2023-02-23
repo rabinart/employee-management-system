@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <main>
+        <article>
+            <p th:text="${employee.getName()} + '\'s profile'">Dummy</p>
+            <fieldset>
+                <legend>Your profile information</legend>
+                <form method="post" th:action="'/employee/' + ${employee.getId()} + '/update'">
+                    <label for="name">Firstname:
+                        <input type="text" name="name" id="name" th:value="${employee.getName()}"><br>
+                    </label>
+                    <label for="email">Email:
+                        <input type="email" name="email" id="email" th:value="${employee.getEmail()}"><br>
+                    </label>
+                    <label for="balance">Balance:
+                        <input type="text" name="balance" id="balance" th:value="${employee.getBalance()}"><br>
+                    </label>
+                    <label for="age">Age:
+                        <input type="text" name="age" id="age" th:value="${employee.getPersonalInfo().getAge()}"><br>
+                    </label>
+                    <div th:each="status : ${statuses}">
+                        <input type="radio" name="status" th:id="${status}" th:value="${status}" th:checked="${status == employee.getPersonalInfo().getStatus()}">
+                        <label th:for="${status}" th:text="${status}">Dum</label>
+                    </div>
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description" th:value="${employee.getPersonalInfo().getDescription()}"><br>
+                    <button type="submit">Update</button>
+                </form>
+            </fieldset>
+        </article>
+    </main>
+</body>
+</html>

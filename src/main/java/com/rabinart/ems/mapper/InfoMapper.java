@@ -1,10 +1,13 @@
 package com.rabinart.ems.mapper;
 
+import com.rabinart.ems.database.dto.EmployeeCreateEditDto;
 import com.rabinart.ems.database.dto.PersonalInfoCreateEditDto;
+import com.rabinart.ems.database.entity.Employee;
 import com.rabinart.ems.database.entity.EmployeeStatus;
 import com.rabinart.ems.database.entity.PersonalInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring")
@@ -16,4 +19,7 @@ public interface InfoMapper {
     @Mapping(target = "status", defaultValue = "ACTIVE")
     @Mapping(target = "description", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
     PersonalInfo toEntity(PersonalInfoCreateEditDto dto);
+
+    @Mapping(target = "id", ignore = true)
+    void update(@MappingTarget PersonalInfo info, PersonalInfoCreateEditDto dto);
 }

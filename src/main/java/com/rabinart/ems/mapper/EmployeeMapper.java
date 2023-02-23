@@ -26,5 +26,8 @@ public interface EmployeeMapper {
 //    @Mapping(target = "id", ignore = true)
 //    PersonalInfo toEntity(PersonalInfoCreateEditDto dto);
 
-    Employee update(@MappingTarget Employee employee, EmployeeCreateEditDto dto);
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "personalInfo", ignore = true)
+    @Mapping(target = "busyness", ignore = true)
+    void update(@MappingTarget Employee employee, EmployeeCreateEditDto dto);
 }
