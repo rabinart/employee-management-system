@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>busyness</title>
+</head>
+<body>
+<main>
+  <article>
+        <h1>Hello</h1>
+        <div th:each="busyness : ${busynesses}">
+            <a th:href="'/busyness/' + ${busyness.getId()}" th:text=
+                    "${busyness.getEmployeeName()} + ' '
+                    + ${busyness.getBusyFrom()} + ' '
+                    + ${busyness.getBusyTill()} + ' '
+                    + ${busyness.getOfficeName()}"></a>
+        </div>
+  </article>
+</main>
+</body>
+</html>

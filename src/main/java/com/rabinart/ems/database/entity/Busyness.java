@@ -27,11 +27,11 @@ public class Busyness extends AuditingEntity<Long>{
     @ManyToOne(fetch = FetchType.LAZY)
     private Office office;
 
-    @Column(nullable = false)
-    private LocalDateTime busy_from;
+    @Column(nullable = false, name = "busy_from")
+    private LocalDateTime busyFrom;
 
-    @Column(nullable = false)
-    private LocalDateTime busy_till;
+    @Column(nullable = false, name = "busy_till")
+    private LocalDateTime busyTill;
 
     @Column(nullable = false)
     private Integer earned;
