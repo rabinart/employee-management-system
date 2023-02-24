@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Busyness</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <main>
   <article>
-      <h1 th:text="${busyness.getEmployeeName()}">Dum</h1>
+      <table>
+          <caption th:text="'Busyness: '+${busyness.getId()}">Dum</caption>
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>Office</th>
+              <th>From</th>
+              <th>Till</th>
+              <th>Job</th>
+              <th>Earned</th>
+              <th>Created by</th>
+              <th>Created at</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <th th:text="${busyness.getEmployeeName()}">Dum</th>
+              <th th:text="${busyness.getOfficeName()}">Dum</th>
+              <th th:text="${busyness.getBusyFrom()}">Dum</th>
+              <th th:text="${busyness.getBusyTill()}">Dum</th>
+              <th th:text="${busyness.getJobType()}">Dum</th>
+              <th th:text="${busyness.getEarned()}">Dum</th>
+              <th th:text="${busyness.getCreatedBy()}">Dum</th>
+              <th th:text="${busyness.getCreatedAt()}">Dum</th>
+          </tr>
+          </tbody>
+      </table>
   </article>
 </main>
 

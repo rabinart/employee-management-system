@@ -1,5 +1,7 @@
 package com.rabinart.ems.integration.database.repository;
 
+import com.rabinart.ems.database.dto.BusynessFilter;
+import com.rabinart.ems.database.entity.Busyness;
 import com.rabinart.ems.database.repository.BusynessRepository;
 import com.rabinart.ems.integration.IntegrationTestBase;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,5 +42,22 @@ class BusynessRepositoryTestIT extends IntegrationTestBase {
                 3
         );
         assertEquals(0, count);
+    }
+
+    @Test
+    void modifiedAtAuditing() {
+        var entity = busynessRepository.findById(1L);
+        var busyness = entity.orElseThrow();
+        busyness.setJobType("new job type");
+        busynessRepository.flush();
+        System.out.println();
+    }
+
+    @Test
+    void findByFilter(){
+        busynessRepository.findAllBy(new BusynessFilter(
+                LocalDateTime.of(2000,1,1,0,0),
+                LocalDateTime.of(2025,1,1,0,0)
+        ));
     }
 }
