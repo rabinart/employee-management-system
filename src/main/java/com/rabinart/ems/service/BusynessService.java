@@ -1,7 +1,10 @@
 package com.rabinart.ems.service;
 
+import com.rabinart.ems.database.dto.BusynessCreateDto;
 import com.rabinart.ems.database.dto.BusynessDto;
+import com.rabinart.ems.database.dto.BusynessFilter;
 import com.rabinart.ems.database.dto.BusynessReadDto;
+import com.rabinart.ems.database.entity.Busyness;
 import com.rabinart.ems.database.repository.BusynessRepository;
 import com.rabinart.ems.mapper.BusynessMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +26,21 @@ public class BusynessService {
                 .map(mapper::toReadDto).toList();
     }
 
+    public List<BusynessReadDto> findAllByFilter(BusynessFilter filter) {
+        return busynessRepository.findAllBy(filter).stream()
+                .map(mapper::toReadDto)
+                .toList();
+    }
+
     public Optional<BusynessDto> findById(Long id) {
         return busynessRepository.findById(id).map(mapper::toDto);
+    }
+
+
+    @Transactional
+    public BusynessReadDto create(BusynessCreateDto dto) {
+        var entity = busynessRepository.save(mapper.toEntity(dto));
+        busynessRepository.flush();
+        return mapper.toReadDto(entity);
     }
 }

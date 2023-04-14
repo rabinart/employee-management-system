@@ -1,5 +1,6 @@
 package com.rabinart.ems.http.controller;
 
+import com.rabinart.ems.database.dto.BusynessFilter;
 import com.rabinart.ems.service.BusynessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,9 @@ public class BusynessController {
     private final BusynessService busynessService;
 
     @GetMapping
-    String findAll(Model model){
-        model.addAttribute("busynesses", busynessService.findAll());
+    String findAll(Model model, BusynessFilter filter){
+        model.addAttribute("filter", filter);
+        model.addAttribute("busynesses", busynessService.findAllByFilter(filter));
         return "busynesses";
     }
 

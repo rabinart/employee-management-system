@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -55,9 +56,21 @@ class BusynessRepositoryTestIT extends IntegrationTestBase {
 
     @Test
     void findByFilter(){
-        busynessRepository.findAllBy(new BusynessFilter(
-                LocalDateTime.of(2000,1,1,0,0),
-                LocalDateTime.of(2025,1,1,0,0)
+        var busynesses = busynessRepository.findAllBy(new BusynessFilter(
+                LocalDateTime.of(2000, 1, 1, 0, 0),
+                LocalDateTime.of(2025, 1, 1, 0, 0)
         ));
+
+        assertThat(busynesses).hasSize(4);
+    }
+
+    @Test
+    void findNextDay() {
+        var allNextDay = busynessRepository.findAllBy(new BusynessFilter(
+                LocalDateTime.of(2023, 2, 19, 0, 0),
+                LocalDateTime.of(2023, 2, 20, 0, 0)
+        ));
+
+        assertThat(allNextDay).hasSize(1);
     }
 }

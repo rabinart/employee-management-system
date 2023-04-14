@@ -33,10 +33,12 @@ INSERT INTO busyness (id, employee_id, office_id, busy_from, busy_till, earned, 
 VALUES (1, 1, 1, '2023-02-18 10:00', '2023-02-18 12:00', 600, 'Basic Phone Repair'),
        (2, 2, 1, '2023-02-18 10:00', '2023-02-18 11:00', 600, 'Basic Phone Repair'),
        (3, 3, 1, '2023-02-18 10:00', '2023-02-18 11:30', 1000, 'Professional screen repair'),
-       (4, 3, 1, '2023-02-18 12:00', '2023-02-18 13:30', 1000, 'Professional screen repair');
+       (4, 1, 1, '2023-02-19 10:00', '2023-02-19 11:30', 1000, 'Professional screen repair'),
+       (5, 3, 1, '2023-02-18 12:00', '2023-02-18 13:30', 1000, 'Professional screen repair');
 SELECT SETVAL('busyness_id_seq', (SELECT max(id) FROM busyness));
 
 
 UPDATE employee SET balance = 600 WHERE id in (1,2);
 UPDATE employee SET balance = 2000 WHERE id = 3;
+
 

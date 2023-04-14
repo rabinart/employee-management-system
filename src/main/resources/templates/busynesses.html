@@ -8,6 +8,17 @@
 <main>
   <article>
         <h1>Hello</h1>
+        <div>
+            <form name="filter">
+                <label for="from">
+                    <input type="datetime-local" id="from" name="from" th:value="${filter.from}">
+                </label>
+                <label for="till">
+                    <input type="datetime-local" id="till" name="till" th:value="${filter.till}">
+                </label>
+                <button>Filter</button>
+            </form>
+        </div>
         <div th:each="busyness : ${busynesses}">
             <a th:href="'/busyness/' + ${busyness.getId()}" th:text=
                     "${busyness.getEmployeeName()} + ' '

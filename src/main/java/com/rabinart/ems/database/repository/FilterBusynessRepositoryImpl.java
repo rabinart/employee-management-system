@@ -23,6 +23,7 @@ public class FilterBusynessRepositoryImpl implements FilterBusynessRepository{
     public List<Busyness> findAllBy(BusynessFilter filter) {
         var predicate = QPredicates.builder()
                 .add(filter.getFrom(), filter.getTill(), busyness.busyFrom::between)
+                .add(filter.getFrom(), filter.getTill(), busyness.busyTill::between)
                 .buildAnd();
 
         return new JPAQuery<Busyness>(entityManager)

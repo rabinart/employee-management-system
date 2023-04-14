@@ -26,9 +26,9 @@ public class QPredicates {
         return this;
     }
 
-    public <T> QPredicates add(T object, T objectt, BiFunction<T, T, Predicate> function){
-        if (object != null && objectt != null){
-            predicates.add(function.apply(object,object));
+    public <T> QPredicates add(T first, T second, BiFunction<T, T, Predicate> function){
+        if (first != null && second != null){
+            predicates.add(function.apply(first,second));
         }
         return this;
     }
