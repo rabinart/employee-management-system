@@ -8,6 +8,9 @@ import com.rabinart.ems.database.querydsl.QPredicates;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static com.rabinart.ems.database.entity.QBusyness.*;
@@ -21,9 +24,16 @@ public class FilterBusynessRepositoryImpl implements FilterBusynessRepository{
 
     @Override
     public List<Busyness> findAllBy(BusynessFilter filter) {
+
+        if (filter == null || filter.getTimeFrom() == null || filter.getDateFrom() == null)
+            filter = new BusynessFilter(LocalDate.now(),LocalDate.now(), LocalTime.MIN, LocalTime.MAX);
+
+        var dateTimeFrom = LocalDateTime.of(filter.getDateFrom(), filter.getTimeFrom());
+        var dateTimeTill = LocalDateTime.of(filter.getDateTill(), filter.getTimeTill());
+
         var predicate = QPredicates.builder()
-                .add(filter.getFrom(), filter.getTill(), busyness.busyFrom::between)
-                .add(filter.getFrom(), filter.getTill(), busyness.busyTill::between)
+                .add(dateTimeFrom, dateTimeTill, busyness.busyFrom::between)
+                .add(dateTimeFrom, dateTimeTill, busyness.busyTill::between)
                 .buildAnd();
 
         return new JPAQuery<Busyness>(entityManager)
